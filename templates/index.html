@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess My Emotion – AI Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Chatbot Avatar -->
+    <div class="chatbot-avatar">
+        <i class="fas fa-robot"></i>
+        <div class="chatbot-tooltip">
+            💡 Tip: Write authentic feelings! The AI learns from emotional language patterns.
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Guess My Emotion</h1>
+            <p>Challenge the AI to guess your emotions.</p>
+        </header>
+
+        <!-- Game Container -->
+        <div class="game-container">
+            <!-- Input Section -->
+            <div class="glass-card input-section">
+                <h2><i class="fas fa-edit"></i> How are you feeling?</h2>
+                <textarea 
+                    id="userText" 
+                    class="text-input" 
+                    placeholder="Describe your feelings or current mood... 
+Example: 'I just received amazing news that made my day!' 
+Or: 'This traffic is making me completely frustrated'
+                    
+Tip: Be authentic! The AI analyzes emotional language patterns."
+                    rows="5"
+                ></textarea>
+
+                <h3><i class="fas fa-smile"></i> Select your actual emotion:</h3>
+                <div class="emotion-buttons">
+                    <button class="emotion-btn" data-emotion="Happy">
+                        <span class="emoji">😊</span>
+                        <span>Happy</span>
+                    </button>
+                    <button class="emotion-btn" data-emotion="Sad">
+                        <span class="emoji">😢</span>
+                        <span>Sad</span>
+                    </button>
+                    <button class="emotion-btn" data-emotion="Angry">
+                        <span class="emoji">😠</span>
+                        <span>Angry</span>
+                    </button>
+                    <button class="emotion-btn" data-emotion="Stress">
+                        <span class="emoji">😫</span>
+                        <span>Stress</span>
+                    </button>
+                    <button class="emotion-btn" data-emotion="Neutral">
+                        <span class="emoji">😐</span>
+                        <span>Neutral</span>
+                    </button>
+                </div>
+
+                <button id="predictBtn" class="btn btn-primary">
+                    <i class="fas fa-brain"></i> Guess My Emotion
+                </button>
+                <small class="model-info">
+                    • Press Ctrl+Enter to quick submit
+                </small>
+            </div>
+
+            <!-- Result Section -->
+            <div class="glass-card result-section" id="resultSection" style="display: none;">
+                <div class="result-display">
+                    <div class="emotion-emoji" id="emotionEmoji">🤔</div>
+                    <div class="prediction-text" id="predictionText">Thinking...</div>
+                    
+                    <div class="confidence-meter">
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" id="confidenceFill"></div>
+                        </div>
+                        <div class="confidence-text" id="confidenceText">0%</div>
+                    </div>
+
+                    <div class="probability-chart">
+                        <h4><i class="fas fa-chart-bar"></i> Confidence Breakdown</h4>
+                        <div id="probabilityChart"></div>
+                    </div>
+
+                    <div class="model-info">
+                        Model used: <span id="modelUsed">Neural Network</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div class="glass-card loading-spinner" id="loadingSpinner">
+            <div class="spinner"></div>
+            <p>AI is analyzing your emotions...</p>
+        </div>
+
+        <!-- Score Board -->
+        <div class="glass-card">
+            <div class="score-board">
+                <div class="score-item">
+                    <h3><i class="fas fa-robot"></i> AI Score</h3>
+                    <div class="score-value ai-score" id="aiScore">0</div>
+                    <p>Correct guesses</p>
+                </div>
+                <div class="score-item">
+                    <h3><i class="fas fa-user"></i> Your Score</h3>
+                    <div class="score-value user-score" id="userScore">0</div>
+                    <p>Times you fooled the AI</p>
+                </div>
+            </div>
+            
+            <div class="game-stats">
+                <p style="text-align: center; color: rgba(255,255,255,0.7);">
+                    <i class="fas fa-sync-alt"></i> Total Rounds: <span id="totalRounds">0</span>
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <button id="resetBtn" class="btn btn-secondary">
+                    <i class="fas fa-redo"></i> New Game
+                </button>
+            </div>
+        </div>
+
+        <!-- Game Instructions -->
+        <div class="glass-card">
+            <h3><i class="fas fa-gamepad"></i> How to Play</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📝</div>
+                    <h4>Write Your Feelings</h4>
+                    <p style="color: rgba(255,255,255,0.8);">Describe your current mood or situation</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎯</div>
+                    <h4>Select Emotion</h4>
+                    <p style="color: rgba(255,255,255,0.8);">Choose what you're actually feeling</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🤖</div>
+                    <h4>Challenge AI</h4>
+                    <p style="color: rgba(255,255,255,0.8);">See if the AI can guess correctly</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏆</div>
+                    <h4>Score Points</h4>
+                    <p style="color: rgba(255,255,255,0.8);">You score when AI guesses wrong!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
