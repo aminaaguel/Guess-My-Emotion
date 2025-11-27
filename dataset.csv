@@ -1,0 +1,51 @@
+text,emotion
+"I'm so excited about this wonderful day!",Happy
+"This is the best news I've ever received",Happy
+"I feel amazing today",Happy
+"Everything is going perfectly",Happy
+"I'm thrilled with the results",Happy
+"My heart is full of joy",Happy
+"I can't stop smiling",Happy
+"This makes me so happy",Happy
+"I'm feeling wonderful",Happy
+"Life is beautiful",Happy
+"I'm so sad and lonely",Sad
+"This is heartbreaking news",Sad
+"I feel completely empty inside",Sad
+"Nothing seems to work out for me",Sad
+"I'm drowning in sadness",Sad
+"This pain is unbearable",Sad
+"I feel so alone",Sad
+"Everything makes me want to cry",Sad
+"My heart is broken",Sad
+"I'm feeling completely hopeless",Sad
+"This makes me absolutely furious",Angry
+"I'm so angry I can't think straight",Angry
+"This is completely unacceptable",Angry
+"I'm boiling with rage",Angry
+"This injustice makes me so mad",Angry
+"I can't believe this is happening",Angry
+"This is so frustrating and annoying",Angry
+"I'm about to lose my temper",Angry
+"This makes my blood boil",Angry
+"I'm so irritated right now",Angry
+"I'm completely overwhelmed with work",Stress
+"The pressure is too much to handle",Stress
+"I have too many deadlines",Stress
+"I'm stressed out of my mind",Stress
+"This workload is unbearable",Stress
+"I can't cope with all this pressure",Stress
+"I'm anxious about everything",Stress
+"The stress is killing me",Stress
+"I feel completely burnt out",Stress
+"I'm at my breaking point",Stress
+"The weather is normal today",Neutral
+"I'm going to the store",Neutral
+"This is a regular day",Neutral
+"Nothing special happening",Neutral
+"I'm just doing my usual routine",Neutral
+"The meeting was average",Neutral
+"Everything is as expected",Neutral
+"Just another ordinary day",Neutral
+"Nothing out of the ordinary",Neutral
+"I feel neither happy nor sad",Neutral
